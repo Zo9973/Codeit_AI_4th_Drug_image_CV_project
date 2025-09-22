@@ -16,3 +16,6 @@ __형식과 양식은 자유이니 편하게 작성하시면 되겠습니다.__
 ---
 이솔형
 - 9/17 Run for metrics / YOLOv8s (epoch 300, imgsz 1280, batch 12, optimizer SGD & AdamW, lr 0.01 n 0.001)
+---
+남경민
+- https://www.notion.so/26b492a41e1380698408ce2e98850420?source=copy_link
