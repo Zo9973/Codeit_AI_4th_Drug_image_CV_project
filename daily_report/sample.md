@@ -10,9 +10,18 @@ https://velog.io/@phobos90/%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%EB%AC%B8%EB%B2%9
 __형식과 양식은 자유이니 편하게 작성하시면 되겠습니다.__
 ---
 신승목
-- 9/16 YOLOv8s (epoch 100, imgsz 1280, batch 8, 전처리 YOLO 기본값), 공유 경로 : results/train/pill_detection_shin
-- 9/17 17시 작업 중인 내용 : YOLO 학습 결과로 나온 weights/best.pt로 테스트 이미지를 처리했을 때 Kaggle에 제출할 수 있는 형태로 만들 수 있는 코드 짜는 중
-- 9/22 9시 다른 파이프라인으로 데이터셋 만들어서 학습하고 COCO 학습 시 YOLO 인덱싱 변환과 역변환 정보를 저장하여 테스트 이미지로 추론 시 얻은 클래스 정보를 역변환해서 COCO의 정보로 바꿔서 했을 때 점수 나오는 것 확인, 1450개 검출해서 0.44512(epoch 100) 얻었고, clahe+desharp 적용한 이미지(시각적으로 음각이 뚜렷해진 것은 확인)로 추가 데이터셋 만들어서 실행했을 때 검출 개수 984개로 오히려 감소하고 점수 0.27565(epoch 100)
+### 9/23
+- results/신승목_추가EDA/count_max_jsons.ipynb 파일 업로드
+- 내용 : def count_max_jsons(data_path)
+- 이미지의 naming 규칙을 분석하여 계산한 json 파일의 이상적인 최대값 계산
+- 이미 train 이미지에 최소 하나의 json 파일이 매칭되고, json파일만 있거나 이미지 파일만 있지는 않다는 것을 확인한 상태에서 수행한 분석이다.
+- 여섯 자리 숫자로 이미지를 구성하는 셋 또는 네 개의 알약의 고유번호가 이미지와 json파일에 naming 규칙에 반영되어 있다는 점을 이용하여 train 이미지의 이름을 분석하여 각각의 이미지 파일에 연결될 수 있는 이상적인 annotation 수를 계산한다.
+- 그리고 실제 데이터셋에 제공된 json 파일 수와 비교하여 데이터셋이 얼마나 충분한지 확인할 수 있다.
+- json 파일 계산할 때는 속도를 위해 병렬 계산 방식인 ThreadPoolExecutor를 이용하였고 진행 속도 파악을 위해 tqdm을 적용하였다. (from concurrent.futures import ThreadPoolExecutor, as_completed 필요)
+- 계산 결과 : 이미지에 연결될 수 있는 json 파일 최대 개수는 5662개인데 제공된 json 파일 수는 4526개로 79.94% 제공되었다.
+- 데이터셋에서 서너개의 약의 조합에 대해 70, 75, 90 형태로 세 번 이미지가 존재하기 때문에 이 정도 json 파일이 제공된다면 클래스 불균형은 존재하더라도 학습 수행에는 충분히 데이터가 제공되었다고 생각한다.
+
+- 
 ---
 이솔형
 - 9/17 Run for metrics / YOLOv8s (epoch 300, imgsz 1280, batch 12, optimizer SGD & AdamW, lr 0.01 n 0.001)
