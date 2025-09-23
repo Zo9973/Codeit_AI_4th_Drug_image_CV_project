@@ -74,5 +74,5 @@ Codeit_AI_4th_Drug_image_CV_project/
 - [신승목](https://www.notion.so/1-26919fbbffa18051baa4c561e60e4359?source=copy_link)
 - [이솔형](https://www.notion.so/26924d5698b6806e9110e224f6c44d26?source=copy_link)
 - [이재영](예정)
-- [지동진](예정)
+- [지동진] *daily report에 업로드*
 - [남경민](https://www.notion.so/26b492a41e1380698408ce2e98850420?source=copy_link)
