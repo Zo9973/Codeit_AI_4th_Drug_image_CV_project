@@ -13,13 +13,11 @@
 
 |역할|담당자|업무|
 |----|-----|-----|
-|Project Manager|신승목|프로젝트 일정관리, 진행상태 확인 및 종합. 최종 보고서 작성, 기타 부족한 부분 지원|
-|Data Enginner|지동진|데이터 파이프라인 구축, 데이터 EDA 시행, 파이프라인 자동화|
-|Model Architect|이재영|Object Detection 관련 모델 구축|
-|Model Architect + Experimentation Sub|남경민|Model Architect, Experimentation Lead 보조|
-|Experimentation Lead|이솔형|모델 평가 및 EDA 결과 바탕 모델 성능 개선을 위한 다양한 실험 진행|
-
----
+|Project Manager|신승목|프로젝트 일정관리, 진행상태 확인 및 종합. 최종 보고서 작성, 개발 지원(YOLOv8모델 및 성능 개선 실험, EDA)|
+|Data Enginner|지동진|데이터 파이프라인 구축, 데이터 EDA 시행, 파이프라인 자동화, github 및 협업환경 구성 및 관리(RT-DETR모델링, 성능개선 시험)|
+|Model Architect|이재영|YOLOv11 모델 담당(모델링, 성능 개선 실험진행)|
+|Model Architect + Experimentation Sub|남경민|필요시 지원|
+|Experimentation Lead|이솔형|YOLOv8 모델 성능 개선 실험 진행|
 
 ## 팀프로젝트 수칙
 ### 1. 데이터 사용 규칙
@@ -31,7 +29,6 @@
 - 평가 지표: mAP(mean Average Precision)
 - 1일 최대 제출 횟수: 5회
 - 리더보드는 Public / Private Score로 운영합니다 (최종 순위: Private Score 기준)
----
 
 ## 📂 폴더 구성
 ```
@@ -67,38 +64,15 @@ Codeit_AI_4th_Drug_image_CV_project/
 └── git_clone.ipynb              # Git clone 실습 코드 
 ```
 
+## 실행방법
+
+## 데이터 전처리
+
+## 예측 결과 예시
 ---
-## 🔧 Git 관련 핵심사항
-코랩에서 작업하시고 작업물 올리실때 다음 절차대로 하시면 되겠습니다.
-### 1. 작업 시작(코랩)
-```
-# 1. 기존 리포지토리 폴더로 이동
-import os
-os.chdir('/content/Codeit_AI_4th_Drug_image_CV_project')
-
-# 2. 최신 변경사항 가져오기
-!git pull origin main
-
-# 3. 현재 상태 확인
-!git status
-!git log --oneline -3
-```
-### 2. 작업 중
-```
-# 파일 수정, 코드 작성...
-# 중간 저장 (로컬 커밋)
-!git add .
-!git commit -m "작업 진행 중 - 중간 저장"
-```
-### 3. 작업 완료
-```
-# 1. 최종 커밋
-!git add .
-!git commit -m "실습 내용 추가 및 완료"
-
-# 2. 혹시 다른 팀원이 push했는지 확인
-!git pull origin main
-
-# 3. 최종 push
-!git push origin main
-```
+## 개인 협업 일지
+- [신승목](https://www.notion.so/1-26919fbbffa18051baa4c561e60e4359?source=copy_link)
+- [이솔형](https://www.notion.so/26924d5698b6806e9110e224f6c44d26?source=copy_link)
+- [이재영](예정)
+- [지동진] *daily report에 업로드*
+- [남경민](https://www.notion.so/26b492a41e1380698408ce2e98850420?source=copy_link)
