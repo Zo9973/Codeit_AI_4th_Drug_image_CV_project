@@ -19,8 +19,6 @@
 |Model Architect + Experimentation Sub|남경민|필요시 지원|
 |Experimentation Lead|이솔형|YOLOv8 모델 성능 개선 실험 진행|
 
----
-
 ## 팀프로젝트 수칙
 ### 1. 데이터 사용 규칙
 - 제공된 데이터셋 외 외부 데이터 사용 가능
@@ -31,7 +29,6 @@
 - 평가 지표: mAP(mean Average Precision)
 - 1일 최대 제출 횟수: 5회
 - 리더보드는 Public / Private Score로 운영합니다 (최종 순위: Private Score 기준)
----
 
 ## 📂 폴더 구성
 ```
@@ -67,6 +64,15 @@ Codeit_AI_4th_Drug_image_CV_project/
 └── git_clone.ipynb              # Git clone 실습 코드 
 ```
 
+## 실행방법
+
+## 데이터 전처리
+
+## 예측 결과 예시
 ---
 ## 개인 협업 일지
 - [신승목](https://www.notion.so/1-26919fbbffa18051baa4c561e60e4359?source=copy_link)
+- [이솔형](https://www.notion.so/26924d5698b6806e9110e224f6c44d26?source=copy_link)
+- [이재영](예정)
+- [지동진](예정)
+- [남경민](https://www.notion.so/26b492a41e1380698408ce2e98850420?source=copy_link)
