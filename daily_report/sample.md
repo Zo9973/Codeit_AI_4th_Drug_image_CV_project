@@ -10,6 +10,8 @@ https://velog.io/@phobos90/%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%EB%AC%B8%EB%B2%9
 __형식과 양식은 자유이니 편하게 작성하시면 되겠습니다.__
 ---
 신승목
+- 협업 일지 모음
+https://www.notion.so/1-26919fbbffa18051baa4c561e60e4359?source=copy_link
 ### 9/23
 - model_notebooks/YOLOv8_submission_SHIN.iynb 파일 업로드 : 파이프라인 파일
 - results/신승목_추가EDA/count_max_jsons.ipynb 파일 업로드 : 추가 EDA 파일
