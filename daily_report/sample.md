@@ -11,7 +11,8 @@ __형식과 양식은 자유이니 편하게 작성하시면 되겠습니다.__
 ---
 신승목
 ### 9/23
-- results/신승목_추가EDA/count_max_jsons.ipynb 파일 업로드
+- model_notebooks/YOLOv8_submission_SHIN.iynb 파일 업로드 : 파이프라인 파일
+- results/신승목_추가EDA/count_max_jsons.ipynb 파일 업로드 : 추가 EDA 파일
 - 내용 : def count_max_jsons(data_path)
 - 이미지의 naming 규칙을 분석하여 계산한 json 파일의 이상적인 최대값 계산
 - 이미 train 이미지에 최소 하나의 json 파일이 매칭되고, json파일만 있거나 이미지 파일만 있지는 않다는 것을 확인한 상태에서 수행한 분석이다.
