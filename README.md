@@ -36,28 +36,12 @@ Codeit_AI_4th_Drug_image_CV_project/
 ├── data/                        # 실제 데이터는 GitHub에 포함되지 않으며,
 │   └── data.txt                 # Google Drive 내 데이터 공유 링크가 담긴 텍스트 파일만 존재
 ├──data_pipeline/                # 데이터 전처리 파이프라인__(자동화)__
-│   ├── pipeline.py                # 메인 실행 파일
-│   ├── data_preprocess/           # 전처리 모듈
-│   │   ├── data_main.py           # 전처리 전용 실행기
-│   │   └── modules/               # 핵심 처리 모듈들
-│   │       ├── validation.py      # 데이터 검증
-│   │       ├── preprocessing.py   # 이미지 전처리
-│   │       ├── annotation_converter.py  # COCO→YOLO 변환
-│   │       ├── dataset_split.py   # 데이터셋 분할
-│   │       ├── data_analyzer.py   # 품질 분석
-│   │       └── data_packager.py   # 최종 패키징
-│   └── pruning_dataset/           # 소규모 데이터셋 생성
-│       ├── pruning_main.py        # 데이터 추출 전용 실행기
-│       └── modules/               # 데이터 추출 모듈들
-│           ├── config.py          # 설정 관리
-│           ├── dataset_splitter.py # 데이터 추출 엔진
-│           └── run_dataset.py     # CLI 도구
-├── notebooks/                   # Jupyter 노트북
-│   ├── data_EDA.ipynb           # 데이터 EDA 보고서
-│   └── data_pipeline.ipynb      # 데이터 전처리 관련 코드 작성
+│   └── notebooks/                 # 전처리 모듈
+├── notebooks/                   # Jupyter 노트북(EDA 관련 파일 업로드)
+│   └── data_EDA.ipynb           # 데이터 EDA 보고서
 ├── model/                       # 모델 관련 코드
 │   ├── notebooks/               # Jupyter 노트북
-│   │   ├── ETL_test_YOLOv8.ipynb  # 파이프라인 작동 테스트용 모델 코드
+│   │   └── ETL_test_YOLOv8.ipynb  # 파이프라인 작동 테스트용 모델 코드
 ├── result/                      # 모델학습 및 예측 평가 결과물 탑재
 ├── LICENSE                      # 라이센스
 ├── README.md                    # 프로젝트 문서
