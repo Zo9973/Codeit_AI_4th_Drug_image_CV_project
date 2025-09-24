@@ -161,3 +161,9 @@ data/datasets/
 data/processed/
 # 이미지 파일
 .png
+
+# 모델 결과 파일
+.runs/
+.pt
+.csv
+.json
