@@ -66,7 +66,40 @@ Codeit_AI_4th_Drug_image_CV_project/
 
 ## 실행방법
 
-## 데이터 전처리
+## 모델 구조
+```mermaid
+graph LR
+    A["🖼️<br/><b>Raw Images</b><br/>train + test"] --> B["📊<br/><b>Data Processing</b><br/>RTDETRDataProcessor"]
+    A1["📋<br/><b>COCO Annotations</b><br/>JSON files"] --> B
+    
+    B --> B1["🔄<br/><b>COCO → YOLO</b><br/>Format Conversion"]
+    B1 --> B2["📄<br/><b>Mapping Files</b><br/>dl_idx ↔ class"]
+    
+    B2 --> C["🤖<br/><b>RT-DETR Training</b><br/>rtdetr-l.pt"]
+    C --> C1["💾<br/><b>Best Model</b><br/>best.pt"]
+    
+    C1 --> D["⚡<br/><b>Inference</b><br/>RTDETRInference"]
+    B2 --> D
+    
+    D --> D1["🎯<br/><b>Object Detection</b><br/>bbox + class"]
+    D1 --> E["📊<br/><b>CSV Submission</b><br/>annotation results"]
+    
+    %% 스타일링 - 큰 폰트와 명확한 색상
+    classDef inputStyle fill:#E3F2FD,stroke:#1976D2,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
+    classDef processStyle fill:#F3E5F5,stroke:#7B1FA2,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
+    classDef trainStyle fill:#FFF3E0,stroke:#F57C00,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
+    classDef inferStyle fill:#E8F5E8,stroke:#388E3C,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
+    classDef outputStyle fill:#FFEBEE,stroke:#D32F2F,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
+    classDef mappingStyle fill:#FFFDE7,stroke:#FBC02D,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
+    
+    %% 클래스 적용
+    class A,A1 inputStyle
+    class B,B1 processStyle
+    class B2 mappingStyle
+    class C,C1 trainStyle
+    class D,D1 inferStyle
+    class E outputStyle
+```
 
 ## 예측 결과 예시
 ---
