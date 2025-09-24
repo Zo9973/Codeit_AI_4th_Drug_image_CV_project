@@ -68,37 +68,101 @@ Codeit_AI_4th_Drug_image_CV_project/
 
 ## 모델 구조
 ```mermaid
-graph LR
-    A["🖼️<br/><b>Raw Images</b><br/>train + test"] --> B["📊<br/><b>Data Processing</b><br/>RTDETRDataProcessor"]
-    A1["📋<br/><b>COCO Annotations</b><br/>JSON files"] --> B
+graph TD
+    A[🖼️ Raw Images<br/>train_images + test_images] --> B[📊 RTDETRDataProcessor]
+    A1[📋 COCO Annotations<br/>train_annotations/*.json] --> B
     
-    B --> B1["🔄<br/><b>COCO → YOLO</b><br/>Format Conversion"]
-    B1 --> B2["📄<br/><b>Mapping Files</b><br/>dl_idx ↔ class"]
+    B --> B1[merge_coco_annotations<br/>JSON 파일 병합 + dl_idx 매핑]
+    B1 --> B2[validate_category_mapping<br/>매핑 검증]
+    B2 --> B3[coco_to_yolo_format<br/>YOLO 형식 변환]
+    B3 --> B4[analyze_class_distribution<br/>클래스 불균형 분석]
     
-    B2 --> C["🤖<br/><b>RT-DETR Training</b><br/>rtdetr-l.pt"]
-    C --> C1["💾<br/><b>Best Model</b><br/>best.pt"]
+    B1 --> M1[📄 category_id_mapping.json<br/>YOLO 클래스 → dl_idx]
+    B1 --> M2[📄 dl_idx_to_name.json<br/>dl_idx → 약품명]
+    B3 --> M3[📄 dataset.yaml<br/>YOLO 설정 파일]
     
-    C1 --> D["⚡<br/><b>Inference</b><br/>RTDETRInference"]
-    B2 --> D
+    B4 --> C[🤖 RTDETRTrainer]
+    M3 --> C
     
-    D --> D1["🎯<br/><b>Object Detection</b><br/>bbox + class"]
-    D1 --> E["📊<br/><b>CSV Submission</b><br/>annotation results"]
+    C --> C1[🏗️ RTDETR Model Loading<br/>rtdetr-l.pt]
+    C1 --> C2[⚙️ Training Configuration<br/>epochs=100, batch=16, imgsz=640]
+    C2 --> C3[🔥 Model Training<br/>HSV 증강, 드롭아웃, 정규화]
+    C3 --> C4[💾 Best Model Save<br/>best.pt]
     
-    %% 스타일링 - 큰 폰트와 명확한 색상
-    classDef inputStyle fill:#E3F2FD,stroke:#1976D2,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
-    classDef processStyle fill:#F3E5F5,stroke:#7B1FA2,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
-    classDef trainStyle fill:#FFF3E0,stroke:#F57C00,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
-    classDef inferStyle fill:#E8F5E8,stroke:#388E3C,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
-    classDef outputStyle fill:#FFEBEE,stroke:#D32F2F,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
-    classDef mappingStyle fill:#FFFDE7,stroke:#FBC02D,stroke-width:3px,color:#000,font-size:16px,font-weight:bold
+    C4 --> D[⚡ RTDETRInference]
+    M1 --> D
     
-    %% 클래스 적용
-    class A,A1 inputStyle
-    class B,B1 processStyle
-    class B2 mappingStyle
-    class C,C1 trainStyle
-    class D,D1 inferStyle
-    class E outputStyle
+    D --> D1[🔍 Model Loading<br/>best.pt + mapping 파일]
+    D1 --> D2[📸 Test Image Processing<br/>conf_thresh=0.321]
+    D2 --> D3[🎯 Object Detection<br/>bbox 예측 + 클래스 분류]
+    D3 --> D4[🔄 Class ID Mapping<br/>YOLO 클래스 → dl_idx]
+    D4 --> D5[📦 COCO Format Conversion<br/>xyxy → xywh]
+    
+    D5 --> E[📄 CSV Submission]
+    E --> E1[annotation_id<br/>1부터 순차]
+    E --> E2[image_id<br/>파일명에서 숫자 추출]
+    E --> E3[category_id<br/>실제 dl_idx]
+    E --> E4[bbox + score<br/>좌표 및 신뢰도]
+    
+    E1 --> F[📊 submission.csv]
+    E2 --> F
+    E3 --> F
+    E4 --> F
+    
+    %% 데이터 플로우 강조
+    style A fill:#e1f5fe
+    style A1 fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#fff3e0
+    style D fill:#e8f5e8
+    style E fill:#fce4ec
+    style F fill:#ffebee
+    
+    %% 매핑 파일들 강조
+    style M1 fill:#fff9c4
+    style M2 fill:#fff9c4
+    style M3 fill:#fff9c4
+    
+    %% 핵심 프로세스 강조
+    style B1 fill:#e8eaf6
+    style C3 fill:#f3e5f5
+    style D3 fill:#e8f5e8
+    style D4 fill:#fff3e0
+    
+    %% 서브그래프로 단계별 그룹화
+    subgraph "Phase 1: Data Processing"
+        B
+        B1
+        B2
+        B3
+        B4
+        M1
+        M2
+        M3
+    end
+    
+    subgraph "Phase 2: Model Training"
+        C
+        C1
+        C2
+        C3
+        C4
+    end
+    
+    subgraph "Phase 3: Inference & Submission"
+        D
+        D1
+        D2
+        D3
+        D4
+        D5
+        E
+        E1
+        E2
+        E3
+        E4
+        F
+    end
 ```
 
 ## 예측 결과 예시
