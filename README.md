@@ -36,15 +36,32 @@ Codeit_AI_4th_Drug_image_CV_project/
 ├── data/                        # 실제 데이터는 GitHub에 포함되지 않으며,
 │   └── data.txt                 # Google Drive 내 데이터 공유 링크가 담긴 텍스트 파일만 존재
 ├──data_pipeline/                # 데이터 전처리 파이프라인__(자동화)__
-│   └── notebooks/               # 전처리 모듈
-│   │   ├── data_preprocesss_for_YOLO.ipynb # 공통 전처리 코드
-│   │   ├── New_split_dataset.ipynb         # 소규모 데이터셋 생성기
-│   │   ├── unzip_dataset.ipynb             # 코랩 전용 압축해제 코드
-│   │   └── unzip_external_data.ipynb       # 추가 데이터 압축해제 및 기존 데이터와 병합
+│   └── notebooks/                          # 전처리 모듈
+│   │   ├── New_split_dataset.ipynb         # 소규모 데이터셋 생성 코드
+│   │   ├── unzip_dataset.ipynb             # 코랩용 원본 데이터셋 압축해제 코드
+│   │   ├── unzip_external_data.ipynb       # 외부 데이터 압축해제 및 원본데이터와 병합 코드
+│   │   └── data_preprocesss_for_YOLO.ipynb # 공통 데이터 전처리 파이프라인(YOLO, RT-DETR)
 ├── notebooks/                   # Jupyter 노트북(EDA 관련 파일 업로드)
+│   ├── RTDETR_EDA.ipynb         # 데이터 EDA 보고서3
+│   ├──data_EDA_2.ipynb          # 데이터 EDA 보고서2
 │   └── data_EDA.ipynb           # 데이터 EDA 보고서
 ├── model/                       # 모델 관련 코드
-│   ├── notebooks/               # Jupyter 인
+│   ├── notebooks/               # Jupyter 노트북
+│   │   └── RT-DETR_250919.ipynb # RT-DETR 전체 코드(data_preprocesss_for_YOLO.ipynb 코드 포함)
+├── github_upload.ipynb          # Github 업로드 코드
+├── LICENSE                      # 라이센스
+├── README.md                    # 프로젝트 문서
+└── git_clone.ipynb              # Git clone 실습 코드 
+```
+
+## 실행방법
+
+### 코랩 기준
+1. data폴더의 링크로 접속해서 데이터셋 압축파일을 다운 받는다.(kaggle에서 직접 다운 받는 것 추천)
+2. 압축파일을 data 폴더에 저장한 후 unzip_dataset.ipynb를 실행시킨다.
+3. 소규모 데이터셋이 필요하다면 New_split_dataset.ipynb를 추가로 실행 시킨다.
+4. RT-DETR_250919.ipynb를 실행시켜 학습 및 결과를 추출한다.
+5. root폴더에 runs폴더와 submisson_detailed.csv가 생성되고 결과를 확인한다.
 
 ## 모델 구조
 ```mermaid
