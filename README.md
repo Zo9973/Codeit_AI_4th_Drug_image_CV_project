@@ -36,19 +36,15 @@ Codeit_AI_4th_Drug_image_CV_project/
 ├── data/                        # 실제 데이터는 GitHub에 포함되지 않으며,
 │   └── data.txt                 # Google Drive 내 데이터 공유 링크가 담긴 텍스트 파일만 존재
 ├──data_pipeline/                # 데이터 전처리 파이프라인__(자동화)__
-│   └── notebooks/                 # 전처리 모듈
+│   └── notebooks/               # 전처리 모듈
+│   │   ├── data_preprocesss_for_YOLO.ipynb # 공통 전처리 코드
+│   │   ├── New_split_dataset.ipynb         # 소규모 데이터셋 생성기
+│   │   ├── unzip_dataset.ipynb             # 코랩 전용 압축해제 코드
+│   │   └── unzip_external_data.ipynb       # 추가 데이터 압축해제 및 기존 데이터와 병합
 ├── notebooks/                   # Jupyter 노트북(EDA 관련 파일 업로드)
 │   └── data_EDA.ipynb           # 데이터 EDA 보고서
 ├── model/                       # 모델 관련 코드
-│   ├── notebooks/               # Jupyter 노트북
-│   │   └── ETL_test_YOLOv8.ipynb  # 파이프라인 작동 테스트용 모델 코드
-├── result/                      # 모델학습 및 예측 평가 결과물 탑재
-├── LICENSE                      # 라이센스
-├── README.md                    # 프로젝트 문서
-└── git_clone.ipynb              # Git clone 실습 코드 
-```
-
-## 실행방법
+│   ├── notebooks/               # Jupyter 인
 
 ## 모델 구조
 ```mermaid
