@@ -36,29 +36,19 @@ Codeit_AI_4th_Drug_image_CV_project/
 ├── data/                        # 실제 데이터는 GitHub에 포함되지 않으며,
 │   └── data.txt                 # Google Drive 내 데이터 공유 링크가 담긴 텍스트 파일만 존재
 ├──data_pipeline/                # 데이터 전처리 파이프라인__(자동화)__
-│   ├── pipeline.py                # 메인 실행 파일
-│   ├── data_preprocess/           # 전처리 모듈
-│   │   ├── data_main.py           # 전처리 전용 실행기
-│   │   └── modules/               # 핵심 처리 모듈들
-│   │       ├── validation.py      # 데이터 검증
-│   │       ├── preprocessing.py   # 이미지 전처리
-│   │       ├── annotation_converter.py  # COCO→YOLO 변환
-│   │       ├── dataset_split.py   # 데이터셋 분할
-│   │       ├── data_analyzer.py   # 품질 분석
-│   │       └── data_packager.py   # 최종 패키징
-│   └── pruning_dataset/           # 소규모 데이터셋 생성
-│       ├── pruning_main.py        # 데이터 추출 전용 실행기
-│       └── modules/               # 데이터 추출 모듈들
-│           ├── config.py          # 설정 관리
-│           ├── dataset_splitter.py # 데이터 추출 엔진
-│           └── run_dataset.py     # CLI 도구
-├── notebooks/                   # Jupyter 노트북
-│   ├── data_EDA.ipynb           # 데이터 EDA 보고서
-│   └── data_pipeline.ipynb      # 데이터 전처리 관련 코드 작성
+│   └── notebooks/                          # 전처리 모듈
+│   │   ├── New_split_dataset.ipynb         # 소규모 데이터셋 생성 코드
+│   │   ├── unzip_dataset.ipynb             # 코랩용 원본 데이터셋 압축해제 코드
+│   │   ├── unzip_external_data.ipynb       # 외부 데이터 압축해제 및 원본데이터와 병합 코드
+│   │   └── data_preprocesss_for_YOLO.ipynb # 공통 데이터 전처리 파이프라인(YOLO, RT-DETR)
+├── notebooks/                   # Jupyter 노트북(EDA 관련 파일 업로드)
+│   ├── RTDETR_EDA.ipynb         # 데이터 EDA 보고서3
+│   ├──data_EDA_2.ipynb          # 데이터 EDA 보고서2
+│   └── data_EDA.ipynb           # 데이터 EDA 보고서
 ├── model/                       # 모델 관련 코드
 │   ├── notebooks/               # Jupyter 노트북
-│   │   ├── ETL_test_YOLOv8.ipynb  # 파이프라인 작동 테스트용 모델 코드
-├── result/                      # 모델학습 및 예측 평가 결과물 탑재
+│   │   └── RT-DETR_250919.ipynb # RT-DETR 전체 코드(data_preprocesss_for_YOLO.ipynb 코드 포함)
+├── github_upload.ipynb          # Github 업로드 코드
 ├── LICENSE                      # 라이센스
 ├── README.md                    # 프로젝트 문서
 └── git_clone.ipynb              # Git clone 실습 코드 
@@ -66,7 +56,65 @@ Codeit_AI_4th_Drug_image_CV_project/
 
 ## 실행방법
 
-## 데이터 전처리
+### 코랩 기준
+1. data폴더의 링크로 접속해서 데이터셋 압축파일을 다운 받는다.(kaggle에서 직접 다운 받는 것 추천)
+2. 압축파일을 data 폴더에 저장한 후 unzip_dataset.ipynb를 실행시킨다.
+3. 소규모 데이터셋이 필요하다면 New_split_dataset.ipynb를 추가로 실행 시킨다.
+4. RT-DETR_250919.ipynb를 실행시켜 학습 및 결과를 추출한다.
+5. root폴더에 runs폴더와 submisson_detailed.csv가 생성되고 결과를 확인한다.
+
+## 모델 구조
+```mermaid
+graph LR
+    subgraph " "
+        A["🖼️<br/><b>Raw Images</b><br/>train + test"]
+        A1["📋<br/><b>COCO Annotations</b><br/>JSON files"]
+    end
+    
+    subgraph " "
+        B["📊<br/><b>Data Processing</b><br/>RTDETRDataProcessor"]
+        B1["🔄<br/><b>Format Conversion</b><br/>COCO → YOLO"]
+        B2["📄<br/><b>Mapping Files</b><br/>dl_idx ↔ class"]
+    end
+    
+    subgraph " "
+        C["🤖<br/><b>RT-DETR Training</b><br/>rtdetr-l.pt"]
+        C1["💾<br/><b>Best Model</b><br/>best.pt"]
+    end
+    
+    subgraph " "
+        D["⚡<br/><b>Inference</b><br/>RTDETRInference"]
+        D1["🎯<br/><b>Detection</b><br/>bbox + class"]
+        E["📊<br/><b>CSV Submission</b><br/>competition format"]
+    end
+    
+    A --> B
+    A1 --> B
+    B --> B1
+    B --> B2
+    B1 --> C
+    B2 --> C
+    C --> C1
+    C1 --> D
+    B2 --> D
+    D --> D1
+    D1 --> E
+    
+    %% 스타일링 - 3:2 가로 비율 최적화
+    classDef inputStyle fill:#E3F2FD,stroke:#1976D2,stroke-width:4px,color:#000,font-size:16px,font-weight:bold
+    classDef processStyle fill:#F3E5F5,stroke:#7B1FA2,stroke-width:4px,color:#000,font-size:16px,font-weight:bold
+    classDef trainStyle fill:#FFF3E0,stroke:#F57C00,stroke-width:4px,color:#000,font-size:16px,font-weight:bold
+    classDef inferStyle fill:#E8F5E8,stroke:#388E3C,stroke-width:4px,color:#000,font-size:16px,font-weight:bold
+    classDef outputStyle fill:#FFEBEE,stroke:#D32F2F,stroke-width:4px,color:#000,font-size:16px,font-weight:bold
+    classDef mappingStyle fill:#FFFDE7,stroke:#FBC02D,stroke-width:4px,color:#000,font-size:16px,font-weight:bold
+    
+    %% 클래스 적용
+    class A,A1 inputStyle
+    class B,B1 processStyle
+    class B2 mappingStyle
+    class C,C1 trainStyle
+    class D,D1,E inferStyle
+```
 
 ## 예측 결과 예시
 ---
