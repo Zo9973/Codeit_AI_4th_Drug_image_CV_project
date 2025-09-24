@@ -117,6 +117,14 @@ graph LR
 ```
 
 ## 예측 결과 예시
+![val_batch2_pred (3)](https://github.com/user-attachments/assets/56a5fed9-9131-473f-81d1-0c0b02685134)
+
+## 모델 학습 결과 시각화 자료
+<img width="2250" height="1500" alt="BoxPR_curve (2)" src="https://github.com/user-attachments/assets/570379ff-13c8-47d5-aa65-65ec642e898b" />
+<img width="2250" height="1500" alt="BoxF1_curve (1)" src="https://github.com/user-attachments/assets/6c0b6266-2e22-4af2-9ffe-1723b3b57263" />
+<img width="3000" height="2250" alt="confusion_matrix_normalized (2)" src="https://github.com/user-attachments/assets/edb79be8-faef-4dfd-b219-4fd99954e9c4" />
+<img width="2400" height="1200" alt="results (6)" src="https://github.com/user-attachments/assets/37c6c3a7-b3ce-4f7e-bf20-92cd201c403a" />
+
 ---
 ## 개인 협업 일지
 - [신승목](https://www.notion.so/1-26919fbbffa18051baa4c561e60e4359?source=copy_link)
