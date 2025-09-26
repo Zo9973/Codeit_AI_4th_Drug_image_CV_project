@@ -1,6 +1,11 @@
 # 📌 [코드잇 스프린트_AI_4기] 초급 팀프로젝트: 경구약제 이미지 객체 인식 모델
 ## **결과 보고서 링크**
+
+제출일 버전 링크
 https://drive.google.com/file/d/1U3zW49stZ8-FZy6-cjEFQOddvazRgNWv/view?usp=drive_link
+발표일 버전 링크
+https://drive.google.com/file/d/1qkXmiHH4j1PzhMmFOlMWbWXNhBRzN-PE/view?usp=sharing
+
 ---
 코드잇 스프린트 초급 팀프로젝트이다. 이번 프로젝트의 목표는 사진 속에 있는 최대 4개의 알약의 이름(클래스)과 위치(바운딩 박스)를 검출하는 것이다. 또한 하이퍼파라미터 튜닝 등을 통해 최고 성능의 모델을 개발하는 것이 목표이다.
 팀은 5인 1팀으로 Project Manager / Data Engineer / Model Architect + Experimentation Lead 로 구성되어있다.
